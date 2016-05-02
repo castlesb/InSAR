@@ -19,9 +19,9 @@ if (process.env.NODE_ENV === 'test') {
     const configTemplate = Handlebars.compile(source);
     const context = {
         projectName: 'InSAR',
-        mongodbUrl: 'mongodb://castlesb01@gmail.com:Mets34769@ds013162.mlab.com:13162/heroku_qkbr2fct',
-        rootEmail: 'castlesb01@gmail.com',
-        rootPassword: 'Mets34769',
+        mongodbUrl: 'mongodb://root:root@ds013162.mlab.com:13162/heroku_qkbr2fct',
+        rootEmail: 'root',
+        rootPassword: 'root',
         systemEmail: 'sys@tem',
         smtpHost: 'smtp.gmail.com',
         smtpPort: 465,
@@ -41,10 +41,10 @@ Async.auto({
     mongodbUrl: ['projectName', function (done, results) {
 
         const promptOptions = {
-            default: 'mongodb://castlesb01@gmail.com:Mets34769@ds013162.mlab.com:13162/heroku_qkbr2fct'
+            default: 'mongodb://root:root@ds013162.mlab.com:13162/heroku_qkbr2fct'
         };
 
-        Promptly.prompt('MongoDB URL: (mongodb://castlesb01@gmail.com:Mets34769@ds013162.mlab.com:13162/heroku_qkbr2fct)', promptOptions, done);
+        Promptly.prompt('MongoDB URL: (mongodb://root:root@ds013162.mlab.com:13162/heroku_qkbr2fct)', promptOptions, done);
     }],
     testMongo: ['rootPassword', function (done, results) {
 
