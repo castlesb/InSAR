@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'test') {
     const configTemplate = Handlebars.compile(source);
     const context = {
         projectName: 'InSAR',
-        mongodbUrl: 'mongodb://localhost:27017/insar',
+        mongodbUrl: 'mongodb://<dbuser>:<dbpassword>@ds013162.mlab.com:13162/heroku_qkbr2fct',
         rootEmail: 'root@root',
         rootPassword: 'root',
         systemEmail: 'sys@tem',
