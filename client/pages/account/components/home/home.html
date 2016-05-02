@@ -1,0 +1,533 @@
+<html>
+    <head>
+        <title>INSAR Job Initiation Tool</title>
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+        <link rel="stylesheet" href="style.css" />
+
+        <!-- JQuery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-datepicker.min.js"></script>
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/bootstrap-datepicker.min.css" />
+
+        <!-- Leaflet -->
+        <link rel="stylesheet" href="css/leaflet.draw.css" />
+        <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+        <script src="js/leaflet.draw.js"></script>
+        
+        <!-- our script -->
+        <script src="js/script.js"></script>
+    </head>
+    <body>
+        <script type="text/babel" src="Controller.jsx"></script>
+        <div class="container">
+            <h1>INSAR Job Initiation Tool</h1>
+            <div class = "row">
+                <div class = "col-lg-8">
+                    <div id="mapid"></div>
+                </div>
+                <div id="query" class="col-md-4" >
+                    <div class="well pre-scrollable">
+                        <h3>Query Form</h3>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ul class="list-unstyled middle">
+                                    <li>
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputPlatform" class="col-xs-4">Platform</label>
+                                                <div class="col-xs-8">
+                                                    <input type="text" class="form-control" id="inputPlatform" placeholder="ie. ERS-1,RADARSAT-1,ENVISAT...">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputAbOrbit" class="col-xs-4">Absolute Orbit: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="number" class="form-control" id="inputAbOrbit" placeholder="">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputRelOrbit" class="col-xs-4">Relative Orbit: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="number" class="form-control" id="inputRelOrbit" placeholder="">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputFrame" class="col-xs-4">Frame: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="number" class="form-control" id="inputFrame" placeholder="">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputStartDate" class="col-xs-4">Start Date: </label>
+                                                <div class='input-group date col-xs-8' id="inputStartDate">
+                                                    <input type='text' class="form-control" />
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputEndDate" class="col-xs-4">End Date: </label>
+                                                <div class='input-group date col-xs-8' id="inputEndDate">
+                                                    <input type='text' class="form-control" />
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputBeamMode" class="col-xs-4">Beam Mode: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="text" class="form-control" id="inputBeamMode" placeholder="">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li id="swath">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputSwath" class="col-xs-4">Swath: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="text" class="form-control" id="inputSwath" placeholder="">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li id="flight-direction">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <label for="radio" class="col-xs-5">Flight Direction: </label>
+                                                <label class="radio-inline col-xs-3">
+                                                  <input type="radio" name="optFlight" value="A">A
+                                                </label>
+                                                <label class="radio-inline col-xs-3">
+                                                  <input type="radio" name="optFlight" value="D">D
+                                                </label>
+                                            </div>
+                                        </form>
+                                    </li>
+                                    <li id="look-direction">
+                                        <form class="form-horizontal" role="form">
+                                            <div class="form-group">
+                                                <label for="radio" class="col-xs-5">Look Direction: </label>
+                                                <label class="radio-inline col-xs-3">
+                                                  <input type="radio" name="optLook" value="L">L
+                                                </label>
+                                                <label class="radio-inline col-xs-3">
+                                                  <input type="radio" name="optLook" value="R">R
+                                                </label>
+                                            </div>
+                                        </form>
+                                    </li>
+                                    <li id="polarization">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputPolarization" class="col-xs-4">Polarization: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="text" class="form-control" id="inputPolarization" placeholder="">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li id="processing-level">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputProccessingLevel" class="col-xs-4">Processing Level: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="text" class="form-control" id="inputProcessingLevel" placeholder="">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li id="collection">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputCollection" class="col-xs-4">Collection: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="text" class="form-control" id="inputCollection" placeholder="">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li id="max-results">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputMaxResults" class="col-xs-4">Max Results: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="number" class="form-control" id="inputMaxResults" placeholder="" max="10000">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li id="min-doppler">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputMinDoppler" class="col-xs-4">Min Doppler: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="number" class="form-control" id="inputMinDoppler" placeholder="">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li id="max-doppler">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputMaxDoppler" class="col-xs-4">Max Doppler: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="number" class="form-control" id="inputMaxDoppler" placeholder="">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li id="min-faraday">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputMinFaraday" class="col-xs-4">Min Faraday: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="number" class="form-control" id="inputMinFaraday" placeholder="">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li id="max-faraday">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputMaxFaraday" class="col-xs-4">Max Faraday: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="number" class="form-control" id="inputMaxFaraday" placeholder="">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li id="min-baseline">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputMinBaseline" class="col-xs-4">Min Baseline: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="number" class="form-control" id="inputMinBaseline" placeholder="">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li id="max-baseline">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputMaxBaseline" class="col-xs-4">Max Baseline: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="number" class="form-control" id="inputMaxBaseline" placeholder="">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li id="min-stack-size">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputMinStackSize" class="col-xs-4">Min Stack Size: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="number" class="form-control" id="inputMinStackSize" placeholder="">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li id="max-stack-size">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputMaxStackSize" class="col-xs-4">Max Stack Size: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="number" class="form-control" id="inputMaxStackSize" placeholder="">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li id="intersects">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="inputIntersects" class="col-xs-4">Intersects: </label>
+                                                <div class="col-xs-8">
+                                                    <input type="text" class="form-control" id="inputIntersects" placeholder="">
+                                                </div>
+                                            </div>    
+                                        </form>
+                                    </li>
+                                    <li id="search"><button id="searchButton" class="btn">Search</button></li>
+                                </ul>
+                                <script>
+    $(document).ready(function() {
+        $("#inputStartDate").datepicker();
+    });
+</script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Scenes -->
+  <div id="scenes" class="row">
+    <div class="container-fluid">
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" href="#collapse1">Scenes</a>
+            </h4>
+          </div>
+          <div id="collapse1" class="panel-collapse collapse">
+            <div class="btn-group btn-group-justified">
+              <div class="table-responsive">          
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>
+                        <div class="btn-group dropdown-toggle">
+                            <button type="button" class="btn btn-info" data-toggle="dropdown">Collection
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Sort Acending</a></li>
+                              <li><a href="#">Sort Decending</a></li>
+                              <li><a href="#">Columns</a></li>
+                              <li><a href="#">Group By This Field</a></li>
+                              <li><a href="#">Show In Groups</a></li>
+                            </ul>
+                          </div>
+                      </th>
+                      <th>
+                        <div class="btn-group dropdown-toggle">
+                            <button type="button" class="btn btn-info" data-toggle="dropdown">Platform
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Sort Acending</a></li>
+                              <li><a href="#">Sort Decending</a></li>
+                              <li><a href="#">Columns</a></li>
+                              <li><a href="#">Group By This Field</a></li>
+                              <li><a href="#">Show In Groups</a></li>
+                            </ul>
+                          </div>
+                      </th>
+                      <th>
+                        <div class="btn-group dropdown-toggle">
+                            <button type="button" class="btn btn-info" data-toggle="dropdown">Absolute Orbit
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Sort Acending</a></li>
+                              <li><a href="#">Sort Decending</a></li>
+                              <li><a href="#">Columns</a></li>
+                              <li><a href="#">Group By This Field</a></li>
+                              <li><a href="#">Show In Groups</a></li>
+                            </ul>
+                          </div>
+                      </th>
+                      <th>
+                        <div class="btn-group dropdown-toggle">
+                            <button type="button" class="btn btn-info" data-toggle="dropdown">Start Time
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Sort Acending</a></li>
+                              <li><a href="#">Sort Decending</a></li>
+                              <li><a href="#">Columns</a></li>
+                              <li><a href="#">Group By This Field</a></li>
+                              <li><a href="#">Show In Groups</a></li>
+                            </ul>
+                          </div>
+                      </th>
+                      <th>
+                        <div class="btn-group dropdown-toggle">
+                            <button type="button" class="btn btn-info" data-toggle="dropdown">Stop Time
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Sort Acending</a></li>
+                              <li><a href="#">Sort Decending</a></li>
+                              <li><a href="#">Columns</a></li>
+                              <li><a href="#">Group By This Field</a></li>
+                              <li><a href="#">Show In Groups</a></li>
+                            </ul>
+                          </div>
+                      </th>
+                      <th>
+                        <div class="btn-group dropdown-toggle">
+                            <button type="button" class="btn btn-info" data-toggle="dropdown">Relative Orbit
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Sort Acending</a></li>
+                              <li><a href="#">Sort Decending</a></li>
+                              <li><a href="#">Columns</a></li>
+                              <li><a href="#">Group By This Field</a></li>
+                              <li><a href="#">Show In Groups</a></li>
+                            </ul>
+                          </div>
+                      </th>
+                      <th>
+                        <div class="btn-group dropdown-toggle">
+                            <button type="button" class="btn btn-info" data-toggle="dropdown">First Frame
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Sort Acending</a></li>
+                              <li><a href="#">Sort Decending</a></li>
+                              <li><a href="#">Columns</a></li>
+                              <li><a href="#">Group By This Field</a></li>
+                              <li><a href="#">Show In Groups</a></li>
+                            </ul>
+                          </div>
+                      </th>
+                      <th>
+                        <div class="btn-group dropdown-toggle">
+                            <button type="button" class="btn btn-info" data-toggle="dropdown">Final Frame
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Sort Acending</a></li>
+                              <li><a href="#">Sort Decending</a></li>
+                              <li><a href="#">Columns</a></li>
+                              <li><a href="#">Group By This Field</a></li>
+                              <li><a href="#">Show In Groups</a></li>
+                            </ul>
+                          </div>
+                      </th>
+                      <th>
+                        <div class="btn-group dropdown-toggle">
+                            <button type="button" class="btn btn-info" data-toggle="dropdown">Beam Mode
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Sort Acending</a></li>
+                              <li><a href="#">Sort Decending</a></li>
+                              <li><a href="#">Columns</a></li>
+                              <li><a href="#">Group By This Field</a></li>
+                              <li><a href="#">Show In Groups</a></li>
+                            </ul>
+                          </div>
+                      </th>
+                      <th>
+                        <div class="btn-group dropdown-toggle">
+                            <button type="button" class="btn btn-info" data-toggle="dropdown">Swath
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Sort Acending</a></li>
+                              <li><a href="#">Sort Decending</a></li>
+                              <li><a href="#">Columns</a></li>
+                              <li><a href="#">Group By This Field</a></li>
+                              <li><a href="#">Show In Groups</a></li>
+                            </ul>
+                          </div>
+                      </th>
+                      <th>
+                        <div class="btn-group dropdown-toggle">
+                            <button type="button" class="btn btn-info" data-toggle="dropdown">flight Direction
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Sort Acending</a></li>
+                              <li><a href="#">Sort Decending</a></li>
+                              <li><a href="#">Columns</a></li>
+                              <li><a href="#">Group By This Field</a></li>
+                              <li><a href="#">Show In Groups</a></li>
+                            </ul>
+                          </div>
+                      </th>
+                      <th>
+                        <div class="btn-group dropdown-toggle">
+                            <button type="button" class="btn btn-info" data-toggle="dropdown">Polorization
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Sort Acending</a></li>
+                              <li><a href="#">Sort Decending</a></li>
+                              <li><a href="#">Columns</a></li>
+                              <li><a href="#">Group By This Field</a></li>
+                              <li><a href="#">Show In Groups</a></li>
+                            </ul>
+                          </div>
+                      </th>
+                      <th>
+                        <div class="btn-group dropdown-toggle">
+                            <button type="button" class="btn btn-info" data-toggle="dropdown">Level
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Sort Acending</a></li>
+                              <li><a href="#">Sort Decending</a></li>
+                              <li><a href="#">Columns</a></li>
+                              <li><a href="#">Group By This Field</a></li>
+                              <li><a href="#">Show In Groups</a></li>
+                            </ul>
+                          </div>
+                      </th>
+                      <th>
+                        <div class="btn-group dropdown-toggle">
+                            <button type="button" class="btn btn-info" data-toggle="dropdown">Stack Size
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Sort Acending</a></li>
+                              <li><a href="#">Sort Decending</a></li>
+                              <li><a href="#">Columns</a></li>
+                              <li><a href="#">Group By This Field</a></li>
+                              <li><a href="#">Show In Groups</a></li>
+                            </ul>
+                          </div>
+                      </th>
+                      <th>
+                        <div class="btn-group dropdown-toggle">
+                            <button type="button" class="btn btn-info" data-toggle="dropdown">Data File
+                              <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="#">Sort Acending</a></li>
+                              <li><a href="#">Sort Decending</a></li>
+                              <li><a href="#">Columns</a></li>
+                              <li><a href="#">Group By This Field</a></li>
+                              <li><a href="#">Show In Groups</a></li>
+                            </ul>
+                          </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+        </div>  
+    </body>
+</html>
