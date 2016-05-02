@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'test') {
     const configTemplate = Handlebars.compile(source);
     const context = {
         projectName: 'InSAR',
-        mongodbUrl: 'mongodb://<dbuser>:<dbpassword>@ds013162.mlab.com:13162/heroku_qkbr2fct',
+        mongodbUrl: 'mongodb://castlesb01@gmail.com:Mets34769@ds013162.mlab.com:13162/heroku_qkbr2fct',
         rootEmail: 'root@root',
         rootPassword: 'root',
         systemEmail: 'sys@tem',
@@ -44,7 +44,7 @@ Async.auto({
             default: 'mongodb://localhost:27017/insar'
         };
 
-        Promptly.prompt('MongoDB URL: (mongodb://localhost:27017/insar)', promptOptions, done);
+        Promptly.prompt('MongoDB URL: (mongodb://castlesb01@gmail.com:Mets34769@ds013162.mlab.com:13162/heroku_qkbr2fct)', promptOptions, done);
     }],
     testMongo: ['rootPassword', function (done, results) {
 
