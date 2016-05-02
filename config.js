@@ -42,13 +42,13 @@ var config = {
         },
         test: {
             mongodb: {
-                url: '{{mongodbUrl}}-test'
+                url: 'mongodb://localhost:27017/insar-test'
             },
             autoIndex: true
         },
         $default: {
             mongodb: {
-                url: '{{mongodbUrl}}'
+                url: 'mongodb://localhost:27017/insar'
             },
             autoIndex: true
         }
