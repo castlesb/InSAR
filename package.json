@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "setup": "./setup.js",
+    "postinstall": "gulp build",
     "start": "gulp",
     "test": "lab -t 100 -S -T ./node_modules/lab-babel -L --lint-options '{\"extensions\":[\".js\",\".jsx\"]}' ./test/client-before.js ./test/client/ ./test/client-after.js ./test/misc/ ./test/server/",
     "test-client": "lab -t 100 -S -T ./node_modules/lab-babel -L --lint-options '{\"extensions\":[\".js\",\".jsx\"]}' ./test/client-before.js ./test/client/ ./test/client-after.js",
@@ -42,7 +43,7 @@
     "react": "0.14.x",
     "slug": "0.9.x",
     "vision": "^4.1.0",
-    "visionary": "4.x.x"
+    "visionary": "4.x.x",
   },
   "devDependencies": {
     "babel-core": "6.x.x",
