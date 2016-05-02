@@ -36,12 +36,12 @@ if (process.env.NODE_ENV === 'test') {
 Async.auto({
     projectName: function (done) {
 
-        Promptly.prompt('Project name: (insar)', { default: 'insar' }, done);
+        Promptly.prompt('Project name: (InSAR)', { default: 'InSAR' }, done);
     },
     mongodbUrl: ['projectName', function (done, results) {
 
         const promptOptions = {
-            default: 'mongodb://localhost:27017/insar'
+            default: 'mongodb://castlesb01@gmail.com:Mets34769@ds013162.mlab.com:13162/heroku_qkbr2fct'
         };
 
         Promptly.prompt('MongoDB URL: (mongodb://castlesb01@gmail.com:Mets34769@ds013162.mlab.com:13162/heroku_qkbr2fct)', promptOptions, done);
