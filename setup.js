@@ -20,8 +20,8 @@ if (process.env.NODE_ENV === 'test') {
     const context = {
         projectName: 'InSAR',
         mongodbUrl: 'mongodb://castlesb01@gmail.com:Mets34769@ds013162.mlab.com:13162/heroku_qkbr2fct',
-        rootEmail: 'root@root',
-        rootPassword: 'root',
+        rootEmail: 'castlesb01@gmail.com',
+        rootPassword: 'Mets34769',
         systemEmail: 'sys@tem',
         smtpHost: 'smtp.gmail.com',
         smtpPort: 465,
