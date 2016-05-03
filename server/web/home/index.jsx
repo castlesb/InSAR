@@ -18,7 +18,7 @@ const Component = React.createClass({
                 <div className="jumbotron">
                     <h1>INSAR Job Initiation Tool</h1>
                     <p className="lead">
-                        Draw shit on the map to get useless information!
+                        Tools to take your research to the next level!
                     </p>
                         
                             <a className="btn btn-primary btn-lg" href="/signup">

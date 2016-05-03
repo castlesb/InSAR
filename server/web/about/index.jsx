@@ -25,7 +25,7 @@ const Component = React.createClass({
                                 <h4 className="media-heading">Brian Castles</h4>
                                 <p>
                                     Graduating senior. Computer science major and mathematics minor.
-                                    IQ is 132. Ass and Tits.
+                                    IQ is 132. I am the man. Keeping it PG. A+ work right here.
                                 </p>
                             </div>
                         </div>

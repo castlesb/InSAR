@@ -9,8 +9,7 @@
     "test": "lab -t 100 -S -T ./node_modules/lab-babel -L --lint-options '{\"extensions\":[\".js\",\".jsx\"]}' ./test/client-before.js ./test/client/ ./test/client-after.js ./test/misc/ ./test/server/",
     "test-client": "lab -t 100 -S -T ./node_modules/lab-babel -L --lint-options '{\"extensions\":[\".js\",\".jsx\"]}' ./test/client-before.js ./test/client/ ./test/client-after.js",
     "test-server": "lab -t 100 -S -T ./node_modules/lab-babel -L --lint-options '{\"extensions\":[\".js\",\".jsx\"]}' ./test/misc/ ./test/server/",
-    "test-cover": "lab -t 100 -S -T ./node_modules/lab-babel -r html -o ./test/artifacts/coverage.html ./test/client-before.js ./test/client/ ./test/client-after.js ./test/misc/ ./test/server/ && open ./test/artifacts/coverage.html",
-    "postinstall": "gulp build"
+    "test-cover": "lab -t 100 -S -T ./node_modules/lab-babel -r html -o ./test/artifacts/coverage.html ./test/client-before.js ./test/client/ ./test/client-after.js ./test/misc/ ./test/server/ && open ./test/artifacts/coverage.html"
   },
   "author": "Brian Castles",
   "license": "MIT",
@@ -19,7 +18,7 @@
   },
   "dependencies": {
     "async": "1.x.x",
-    "bcryptjs": "*",
+    "bcrypt": "*",
     "boom": "3.x.x",
     "classnames": "2.x.x",
     "confidence": "1.x.x",
