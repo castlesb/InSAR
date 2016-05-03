@@ -36,7 +36,7 @@ var config = {
         $filter: 'env',
         production: {
             mongodb: {
-                url: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL
+                url: process.env.MONGOLAB_URI
             },
             autoIndex: false
         },
